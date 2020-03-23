@@ -1,0 +1,44 @@
+.register-form-container{
+    position: relative;
+    background: #2980b9;
+    border-radius: 5px;
+    padding: 10px 50px;
+    width: 50%;
+    margin: 2% 25%;   
+    opacity: 0.9;
+}
+
+label{
+    color: #fff;
+}
+
+.container::before{
+    content: 'Register';
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    position: absolute;
+    font-size: 200px;
+    /* margin-top: 20%; */
+}
+
+::placeholder{
+    color: #fff;
+}
+
+.is-focused{
+    color: #fff;
+}
+
+.submit-btn{
+    color: #2980b9;
+    background: #fff;
+}
+
+.submit-btn:hover{
+    background: #2980b9;
+    color: #fff;
+}
+
+.form-input{
+    color: #fff;
+  }
