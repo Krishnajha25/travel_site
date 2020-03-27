@@ -1,0 +1,9 @@
+.search-bar{
+    width: 60%;
+    margin: auto 20%;
+}
+
+.search-input-bar{
+    width: inherit;
+    margin: inherit;
+}
