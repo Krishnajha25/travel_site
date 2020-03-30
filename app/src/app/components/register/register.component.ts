@@ -9,31 +9,36 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 })
 export class RegisterComponent implements OnInit {
 
+  userObj = {
+    first_name: '',
+    last_name: '',
+    email: '',
+    password: '',
+    confirm_password: ''
+  }
 
-  // first_name: String;
-  // last_name: String;
-  // email: String;
-  // password: String;
-  // confirm_password: String;
-
-  registerForm = this.fb.group({
-    first_name: ['', Validators.required],
-    last_name: ['', Validators.required],
-    email: ['', Validators.required],
-    password: ['', Validators.required],
-    confirm_password: ['', Validators.required],
-  });
+  submitted = false;
+  
+  get registerFormControl() {
+    return this.registerForm.controls;
+  }
 
   
+
+  registerForm = this.fb.group({
+    first_name: ['', [Validators.required, Validators.minLength(2)]],
+    last_name: ['', [Validators.required, Validators.minLength(2)]],
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    confirm_password: ['', Validators.required]
+  },
+  {
+    validator: this.validateService.MatchPassword('password', 'confirm_password')
+  });
 
   constructor(private validateService: ValidateService, private fb: FormBuilder) { 
     
    }
-
-  // onSubmit(){
-  //   console.log(this.registerForm.value.first_name);
-  // }
- 
 
   ngOnInit(): void {
   }
@@ -47,21 +52,39 @@ export class RegisterComponent implements OnInit {
       confirm_password: this.registerForm.value.confirm_password
     }
 
-    if(!this.validateService.validateRegister(user)){
-      console.log("Please enter the required fields")
-      return false;
+    console.log(this.registerForm.controls.first_name)
+
+    this.submitted = true;
+    if(this.registerForm.valid){
+      console.log('Form submitted succesfully');
+      console.table(this.registerForm.value);
     }
 
-    if(!this.validateService.validateEmail(user.email)){
-      console.log("Please enter a valid email");
-      return false;
-    }
+    // if(!this.validateService.validateRegister(user)){
+    //   console.log("Please enter the required fields")
+    //   return false;
+    // }
 
-    if(!this.validateService.validatePassword(user.password, user.confirm_password)){
-      console.log('Password do not match')
-    }
+    // if(!this.validateService.validateFirstName(user.first_name)){
+    //   console.log("Only characters are allowed in first name")
+    //   return false;
+    // }
 
-    //console.log(user.password.length )
+    // if(!this.validateService.validateLastName(user.last_name)){
+    //   console.log("Only characters are allowed in first name")
+    //   return false;
+    // }
+
+    // if(!this.validateService.validateEmail(user.email)){
+    //   console.log("Please enter a valid email");
+    //   return false;
+    // }
+
+    // if(!this.validateService.validatePassword(user.password, user.confirm_password)){
+    //   console.log('Password do not match')
+    // }
+
+    console.log(this.registerForm.value )
   }
 
 }

@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { FormGroup } from '@angular/forms'
 
 @Injectable({
   providedIn: 'root'
@@ -8,12 +9,34 @@ export class ValidateService {
   constructor() { }
 
 
-  validatePassword(password, confirm_password){
-    if(password !== confirm_password) {
-      return false
-    }
-    else{
-      return true
+  validateFirstName(first_name){
+    const re = /^[A-Za-z]+$/
+    return re.test(String(first_name).toLowerCase());
+  }
+
+  validateLastName(last_name){
+    const re = /^[A-Za-z]+$/
+    return re.test(String(last_name).toLowerCase());
+  }
+
+  MatchPassword(password: string, confirm_password: string) {
+    return (formGroup: FormGroup) => {
+      const passwordControl = formGroup.controls[password];
+      const confirmPasswordControl = formGroup.controls[confirm_password];
+
+      if (!passwordControl || !confirmPasswordControl) {
+        return null;
+      }
+
+      if (confirmPasswordControl.errors && !confirmPasswordControl.errors.passwordMismatch) {
+        return null;
+      }
+
+      if (passwordControl.value !== confirmPasswordControl.value) {
+        confirmPasswordControl.setErrors({ passwordMismatch: true });
+      } else {
+        confirmPasswordControl.setErrors(null);
+      }
     }
   }
 
