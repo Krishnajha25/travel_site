@@ -37,7 +37,7 @@ module.exports = {
       if (!results) {
         return res.json({
           success: 0,
-          data: "Invalid email or password"
+          data: "Sorry, you are not registered with us!"
         });
       }
       const result = compareSync(body.password, results.password);
@@ -48,13 +48,13 @@ module.exports = {
         });
         return res.json({
           success: 1,
-          message: "login successfully",
+          message: "Login successfully",
           token: jsontoken
         });
       } else {
         return res.json({
           success: 0,
-          data: "Invalid email or password"
+          data: "Please enter correct password"
         });
       }
     });
