@@ -1,9 +1,11 @@
-.active{
-    color: #fff;
-    background: #333;
-}
-
 .active a{
-    color: #fff;
+    color: #2b2a2a;
 }
 
+a{
+    color: #a0a0a0;
+}
+
+a:hover{
+    text-decoration: none;
+}

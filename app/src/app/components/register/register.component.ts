@@ -9,6 +9,16 @@ import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms'
 })
 export class RegisterComponent implements OnInit {
 
+  content = {
+    title: "Tourist",
+    subTitle: "Please register",
+    email: "Enter email",
+    password: "Enter password",
+    firstName: "Enter first name",
+    lastName: "Enter last name",
+    confirmPassword: "Re-enter password"
+  }
+
   userObj = {
     first_name: '',
     last_name: '',

@@ -14,6 +14,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ValidateService } from './services/validate.service';
+import { PlacesGridComponent } from './components/places-grid/places-grid.component';
+import { PlaceLandingComponent } from './components/place-landing/place-landing.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -34,7 +36,9 @@ const appRoutes: Routes = [
     HomeComponent,
     DashboardComponent,
     ProfileComponent,
-    ContactComponent
+    ContactComponent,
+    PlacesGridComponent,
+    PlaceLandingComponent
   ],
   imports: [
     BrowserModule,

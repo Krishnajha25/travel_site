@@ -1,0 +1,6 @@
+.main-container{
+    min-height: 100vh;
+    /* background: url("../assets/background1.jpg"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
