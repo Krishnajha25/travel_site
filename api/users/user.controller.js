@@ -37,7 +37,7 @@ module.exports = {
       if (!results) {
         return res.json({
           success: 0,
-          data: "Sorry, you are not registered with us!"
+          message: "Sorry, you are not registered with us!"
         });
       }
       const result = compareSync(body.password, results.password);
@@ -54,7 +54,7 @@ module.exports = {
       } else {
         return res.json({
           success: 0,
-          data: "Please enter correct password"
+          message: "Please enter correct password"
         });
       }
     });
@@ -75,7 +75,7 @@ module.exports = {
       results.password = undefined;
       return res.json({
         success: 1,
-        data: results
+        message: results
       });
     });
   },
@@ -87,7 +87,7 @@ module.exports = {
       }
       return res.json({
         success: 1,
-        data: results
+        message: results
       });
     });
   },

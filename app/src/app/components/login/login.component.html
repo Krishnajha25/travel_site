@@ -1,17 +1,35 @@
 
 <div class="login-component">
-    <div class="container">
-        
-        <form class="login-form-container">
-            <div class="form-group">
+  <div class="container">
+      
+      <form class="login-form-container" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+          <div class="form-group">
               <label for="email">Email address</label>
-              <input type="email" class="form-input form-control" id="email" aria-describedby="emailHelp" placeholder="{{ content.emailPlaceholder }}">
-            </div>
-            <div class="form-group">
+              <input type="email" formControlName="email" name="email" class="form-input form-control" id="email" aria-describedby="emailHelp" placeholder="{{ content.emailPlaceholder }}" required>
+              <span class="text-danger" *ngIf="(loginFormControl.email.touched || submitted) && loginFormControl.email.errors?.required">
+                  *Email is required
+              </span>
+              <span class="text-danger" *ngIf="loginFormControl.email.touched && loginFormControl.email.errors?.email">
+                  *Enter a valid email address
+              </span>
+          </div>
+          <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-input form-control" id="password" placeholder="{{ content.passwordPlaceholder }}">
-            </div>
-            <button type="submit" class="submit-btn btn btn-primary">Submit</button>
-          </form>
-    </div>
+              <input type="password" formControlName="password" name="password" class="form-input form-control" id="password" placeholder="{{ content.passwordPlaceholder }}" required>
+              <span class="text-danger" *ngIf="(loginFormControl.password.touched || submitted) && loginFormControl.password.errors?.required">
+                  *Password is required
+              </span>
+              <span class="text-danger" *ngIf="(loginFormControl.password.touched || submitted) && loginFormControl.password.errors?.minlength">
+                *Password should be atleast 3 characters long
+            </span>
+          </div>
+          
+          <button type="submit" class="submit-btn btn btn-primary">Submit</button>
+
+          <p>
+            Form Status: {{ loginForm.status }}
+          </p>
+
+        </form>
+  </div>
 </div>

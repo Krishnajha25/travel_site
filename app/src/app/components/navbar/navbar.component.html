@@ -4,13 +4,19 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
+    <ul class="nav navbar-nav navbar-right">
       <li [routerLinkActive] = "['active']" [routerLinkActiveOptions] = "{ exact: true }"  class="nav-item">
         <a  [routerLink] = "['/']">Home</a>
       </li>
+      
       <li [routerLinkActive] = "['active']" [routerLinkActiveOptions] = "{ exact: true }" class="nav-item">
         <a  [routerLink] = "['/login']">Login</a>
       </li>
+
+      <!-- <li *ngIf="isLoggedIn" [routerLinkActive] = "['active']" [routerLinkActiveOptions] = "{ exact: true }" class="nav-item">
+        <a  href="#">Logout</a>
+      </li> -->
+
       <li [routerLinkActive] = "['active']" [routerLinkActiveOptions] = "{ exact: true }" class="nav-item">
         <a  [routerLink] = "['/register']">Register</a>
       </li>
