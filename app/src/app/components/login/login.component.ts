@@ -3,6 +3,7 @@ import { HttpClient }    from '@angular/common/http';
 import { ValidateService } from '../../services/validate.service';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router'
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
     passwordPlaceholder: "Enter password"
   }
 
-  constructor(private http: HttpClient, private validateService: ValidateService, private fb: FormBuilder, private router: Router) { }
+  constructor(private http: HttpClient, private login: LoginService, private validateService: ValidateService, private fb: FormBuilder, private router: Router) { }
 
   submitted = false;
 
@@ -49,23 +50,36 @@ export class LoginComponent implements OnInit {
 
     this.submitted = true;
     if(this.loginForm.valid){
-      this.http.post(this.url,user).subscribe(
-        (response) => {
-          if(response['success'] == 1){
-            this.isLoggedIn = true
-            const token = response['token']
+
+      this.login.loginRequest(user)
+      .subscribe(
+        res => {
+          if(res['success'] == 1){
+            localStorage.setItem('token', res['token'])
             this.router.navigateByUrl('/')
-            console.log(token)
-            console.log(response['message'])
           }
-          else if (response['success'] != 1){
-            alert(response['message'])
+          else if (res['success'] != 1){
+            alert(res['message'])
           }
-          
-          //console.log(response)
         },
-        (error) => console.log(error)
-      )      
+        err => console.log(err)
+      )
+      // this.http.post(this.url,user).subscribe(
+      //   (response) => {
+      //     if(response['success'] == 1){
+      //       this.isLoggedIn = true
+      //       const token = response['token']
+      //       this.router.navigateByUrl('/')
+      //       console.log(response['message'])
+      //     }
+      //     else if (response['success'] != 1){
+      //       alert(response['message'])
+      //     }
+          
+      //     //console.log(response)
+      //   },
+      //   (error) => console.log(error)
+      // )      
     }
     else{
       alert("Something went wrong!")

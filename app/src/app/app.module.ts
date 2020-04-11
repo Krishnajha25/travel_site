@@ -14,8 +14,11 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ValidateService } from './services/validate.service';
+
 import { PlacesGridComponent } from './components/places-grid/places-grid.component';
 import { PlaceLandingComponent } from './components/place-landing/place-landing.component';
+import { LoginService } from './services/login.service';
+import { RegisterService } from './services/register.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -47,7 +50,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ValidateService],
+  providers: [ValidateService, LoginService, RegisterService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

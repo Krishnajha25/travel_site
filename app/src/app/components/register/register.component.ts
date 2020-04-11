@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ValidateService } from '../../services/validate.service';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { RegisterService } from '../../services/register.service'
 
 @Component({
   selector: 'app-register',
@@ -39,14 +40,14 @@ export class RegisterComponent implements OnInit {
     first_name: ['', [Validators.required, Validators.minLength(2)]],
     last_name: ['', [Validators.required, Validators.minLength(2)]],
     email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
+    password: ['', [Validators.required, Validators.minLength(3)]],
     confirm_password: ['', Validators.required]
   },
   {
     validator: this.validateService.MatchPassword('password', 'confirm_password')
   });
 
-  constructor(private validateService: ValidateService, private fb: FormBuilder) { 
+  constructor(private validateService: ValidateService, private fb: FormBuilder, private register: RegisterService) { 
     
    }
 
@@ -62,13 +63,18 @@ export class RegisterComponent implements OnInit {
       confirm_password: this.registerForm.value.confirm_password
     }
 
-    console.log(this.registerForm.controls.first_name)
-
     this.submitted = true;
     if(this.registerForm.valid){
-      console.log('Form submitted succesfully');
-      console.table(this.registerForm.value);
+      this.register.registerUser(user)
+      .subscribe(
+        res => {
+          console.log(res)
+        },
+        err => console.log(err)
+      )
     }
+
+
 
     // if(!this.validateService.validateRegister(user)){
     //   console.log("Please enter the required fields")
@@ -94,7 +100,6 @@ export class RegisterComponent implements OnInit {
     //   console.log('Password do not match')
     // }
 
-    console.log(this.registerForm.value )
   }
 
 }

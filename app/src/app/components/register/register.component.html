@@ -36,7 +36,7 @@
             <div class="form-group">
                 <label for="confirm-password">Confirm Password</label>
                 <input type="password" formControlName="confirm_password" name="confirm_password" class="form-input form-control" id="confirm-password" placeholder="{{ content.confirmPassword }}" required>
-                <span class="text-danger" *ngIf="registerFormControl.confirmPassword.touched && registerFormControl.confirmPassword.errors?.passwordMismatch">
+                <span class="text-danger" *ngIf="registerFormControl.confirm_password.touched && registerFormControl.confirm_password.errors?.passwordMismatch">
                     *Passwords does not match
                 </span>
             </div>
