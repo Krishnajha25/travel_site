@@ -3,7 +3,7 @@ import { HttpClient }    from '@angular/common/http';
 import { ValidateService } from '../../services/validate.service';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router'
-import { LoginService } from '../../services/login.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     passwordPlaceholder: "Enter password"
   }
 
-  constructor(private http: HttpClient, private login: LoginService, private validateService: ValidateService, private fb: FormBuilder, private router: Router) { }
+  constructor(private http: HttpClient, private login: AuthService, private validateService: ValidateService, private fb: FormBuilder, private router: Router) { }
 
   submitted = false;
 

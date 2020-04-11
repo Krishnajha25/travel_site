@@ -17,8 +17,7 @@ import { ValidateService } from './services/validate.service';
 
 import { PlacesGridComponent } from './components/places-grid/places-grid.component';
 import { PlaceLandingComponent } from './components/place-landing/place-landing.component';
-import { LoginService } from './services/login.service';
-import { RegisterService } from './services/register.service';
+import { AuthService } from './services/auth.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -50,7 +49,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ValidateService, LoginService, RegisterService],
+  providers: [ValidateService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

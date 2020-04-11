@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ValidateService } from '../../services/validate.service';
 import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { RegisterService } from '../../services/register.service'
+import { AuthService } from '../../services/auth.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-register',
@@ -47,7 +48,7 @@ export class RegisterComponent implements OnInit {
     validator: this.validateService.MatchPassword('password', 'confirm_password')
   });
 
-  constructor(private validateService: ValidateService, private fb: FormBuilder, private register: RegisterService) { 
+  constructor(private router: Router ,private validateService: ValidateService, private fb: FormBuilder, private register: AuthService) { 
     
    }
 
@@ -68,7 +69,9 @@ export class RegisterComponent implements OnInit {
       this.register.registerUser(user)
       .subscribe(
         res => {
-          console.log(res)
+          if(res['success'] == 1){
+            this.router.navigate(['/login'])
+          }
         },
         err => console.log(err)
       )
