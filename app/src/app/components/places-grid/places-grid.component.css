@@ -42,3 +42,15 @@
     color: #fff;
     margin: 70px auto;
 } */
+
+.card.text-center {
+    /* padding: 20px; */
+    margin: 10px;
+}
+.cardContainer{
+    margin-top: 30px;
+}
+
+.seeMoreBtn{
+    margin: 0px auto;
+}

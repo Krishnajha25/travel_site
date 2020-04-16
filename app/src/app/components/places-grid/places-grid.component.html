@@ -1,37 +1,21 @@
-
-<div class="container">
+<div class="cardContainer container">
     <div class="row">
-        <div class="col-md-3 col-sm-6">
+        <div class="col-md-4" *ngFor="let place of places.slice(0,6)">
             <div class="card text-center">
-                <img class="card-img-top" src="../../../assets/places/mahabaleshwar.jpg" alt="">
+                <img class="card-img-top" [src]="place.imageSource" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">Mahabaleshwar</h5>
+                    <h5 class="card-title">
+                        {{ place.name }}
+                    </h5>
+                    <p class="card-text">
+                        {{ place.desc }}
+                    </p>
                 </div>
+                <a href="" class="btn btn-primary">Visit {{ place.name }}</a>
             </div>
         </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="card text-center">
-                <img class="card-img-top" src="../../../assets/places/mahabaleshwar.jpg" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">Mahabaleshwar</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="card text-center">
-                <img class="card-img-top" src="../../../assets/places/mahabaleshwar.jpg" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">Mahabaleshwar</h5>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="card text-center">
-                <img class="card-img-top" src="../../../assets/places/mahabaleshwar.jpg" alt="">
-                <div class="card-body">
-                    <h5 class="card-title">Mahabaleshwar</h5>
-                </div>
-            </div>
-        </div>
+    </div>
+    <div class="row text-center">
+        <button class="seeMoreBtn btn btn-lg btn-primary" (click)="goToPlaces()">See more</button>
     </div>
 </div>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PlacesService } from '../../services/places.service';
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-places-grid',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlacesGridComponent implements OnInit {
 
-  constructor() { }
+  places = []
+  constructor(private placeService: PlacesService, private router: Router) { }
 
   ngOnInit(): void {
+    this.placeService.getPlaces()
+    .subscribe(
+      res => this.places = res,
+      err => console.log(err)
+    )
+  }
+
+  goToPlaces(){
+    this.router.navigate(['/places'])
   }
 
 }

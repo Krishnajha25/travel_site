@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
 
@@ -18,14 +18,18 @@ import { ValidateService } from './services/validate.service';
 import { PlacesGridComponent } from './components/places-grid/places-grid.component';
 import { PlaceLandingComponent } from './components/place-landing/place-landing.component';
 import { AuthService } from './services/auth.service';
+import { AuthenticateGuard } from './guards/authenticate.guard';
+import { TokenInterceptorService } from './services/token-interceptor.service';
+import { PlacesService } from './services/places.service';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthenticateGuard] },
   { path: 'contact', component: ContactComponent },
+  { path: 'places', component: PlaceLandingComponent }
 ]
 
 @NgModule({
@@ -49,7 +53,12 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes)
   ],
-  providers: [ValidateService, AuthService],
+  providers: [PlacesService ,ValidateService, AuthService, AuthenticateGuard, 
+    {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
