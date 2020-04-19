@@ -54,3 +54,7 @@
 .seeMoreBtn{
     margin: 0px auto;
 }
+
+img.card-img-top {
+    height: 230px;
+}

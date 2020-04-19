@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
     <div class="row">
         <div class="col-md-4" *ngFor="let place of places">
             <div class="card text-center">
@@ -12,6 +12,26 @@
                     </p>
                 </div>
                 <a href="" class="btn btn-primary">Visit {{ place.name }}</a>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4" *ngFor="let place of placesExcel">
+            <div class="card text-center">
+                <img class="card-img-top" [src]="place[1]" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{ place[0] }}
+                    </h5>
+                    <p class="card-text">
+                        {{ place[2] | limitTo: 50 }}
+                    </p>
+                </div>
+                <a href="" class="btn btn-primary">Visit {{ place[0] }}</a>
             </div>
         </div>
     </div>

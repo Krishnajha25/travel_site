@@ -21,6 +21,7 @@ import { AuthService } from './services/auth.service';
 import { AuthenticateGuard } from './guards/authenticate.guard';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { PlacesService } from './services/places.service';
+import { ShowMorePipe } from './pipes/show-more.pipe';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     ContactComponent,
     PlacesGridComponent,
-    PlaceLandingComponent
+    PlaceLandingComponent,
+    ShowMorePipe
   ],
   imports: [
     BrowserModule,

@@ -13,7 +13,7 @@ export class PlacesGridComponent implements OnInit {
   constructor(private placeService: PlacesService, private router: Router) { }
 
   ngOnInit(): void {
-    this.placeService.getPlaces()
+    this.placeService.getPlacesExcel()
     .subscribe(
       res => this.places = res,
       err => console.log(err)

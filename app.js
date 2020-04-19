@@ -7,12 +7,25 @@ var cors = require("cors")
 var bodyParser = require("body-parser")
 const { checkToken } = require('./auth/token_validation')
 
+const xlsxFile = require("read-excel-file/node")
+
 app.use(express.json());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors())
+
+app.get('/api/file', checkToken, (req, res) => {
+  //xyz = []
+  xlsxFile('./RECORD.xlsx').then((rows) => 
+    {
+      res.json(rows)
+    }
+  )
+  //return res.json(xyz)
+})
+
 
 app.use(express.static(path.join(__dirname, 'public')))
 
