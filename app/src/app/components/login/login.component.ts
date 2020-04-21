@@ -82,7 +82,7 @@ export class LoginComponent implements OnInit {
       // )      
     }
     else{
-      alert("Something went wrong!")
+      alert("Something went wrong!, Please try again!")
     }
   }
 

@@ -8,10 +8,7 @@ module.exports = {
       token = token[1];
       jwt.verify(token, "qwe1234", (err, decoded) => {
         if (err) {
-          return res.json({
-            success: 0,
-            message: "Invalid Token..."
-          });
+          return res.status(401).send("Some problem occured please login again.")
           //return console.log(token + err)
         } else {
           req.decoded = decoded;
@@ -19,10 +16,7 @@ module.exports = {
         }
       });
     } else {
-      return res.json({
-        success: 0,
-        message: "Access Denied! Unauthorized User"
-      });
+      return res.status(401).send("Access Denied! Unauthorized User")
       //console.log("Access denied")
     }
   }

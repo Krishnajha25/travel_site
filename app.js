@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors())
 
-app.get('/api/file', checkToken, (req, res) => {
+app.get('/api/file', (req, res) => {
   //xyz = []
   xlsxFile('./RECORD.xlsx').then((rows) => 
     {

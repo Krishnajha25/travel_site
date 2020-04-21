@@ -13,16 +13,16 @@
         <a  [routerLink] = "['/places']">Places</a>
       </li>
       
-      <li [routerLinkActive] = "['active']" [routerLinkActiveOptions] = "{ exact: true }" class="nav-item">
+      <li  *ngIf="!authService.loggedIn()" [routerLinkActive] = "['active']" [routerLinkActiveOptions] = "{ exact: true }" class="nav-item">
         <a  [routerLink] = "['/login']">Login</a>
       </li>
 
-      <!-- <li *ngIf="isLoggedIn" [routerLinkActive] = "['active']" [routerLinkActiveOptions] = "{ exact: true }" class="nav-item">
-        <a  href="#">Logout</a>
-      </li> -->
+      <li style="cursor: pointer;" *ngIf="authService.loggedIn()" [routerLinkActive] = "['active']" [routerLinkActiveOptions] = "{ exact: true }" class="nav-item">
+        <a (click)="authService.logout()">Logout</a>
+      </li>
 
-      <li [routerLinkActive] = "['active']" [routerLinkActiveOptions] = "{ exact: true }" class="nav-item">
-        <a  [routerLink] = "['/register']">Register</a>
+      <li *ngIf="!authService.loggedIn()" [routerLinkActive] = "['active']" [routerLinkActiveOptions] = "{ exact: true }" class="nav-item">
+        <a [routerLink] = "['/register']">Register</a>
       </li>
       <li [routerLinkActive] = "['active']" [routerLinkActiveOptions] = "{ exact: true }" class="nav-item">
         <a  [routerLink] = "['/contact']">Contact</a>

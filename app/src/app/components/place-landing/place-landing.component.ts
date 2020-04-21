@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PlacesService } from '../../services/places.service';
-import { ShowMorePipe } from '../../pipes/show-more.pipe'
+import { HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt'
+
 
 @Component({
   selector: 'app-place-landing',
@@ -11,13 +14,19 @@ export class PlaceLandingComponent implements OnInit {
 
   places = []
   placesExcel = []
-  constructor(private placeService: PlacesService) { }
+  constructor(private router: Router, private placeService: PlacesService, private jwtHelper: JwtHelperService) { }
 
   ngOnInit(): void {
     this.placeService.getPlaces()
     .subscribe(
       res => this.places = res,
-      err => console.log(err)
+      err => {
+        if( err instanceof HttpErrorResponse ){
+          if (err.status === 401){
+
+          }
+        }
+      }
     )
 
     this.placeService.getPlacesExcel()
@@ -25,5 +34,8 @@ export class PlaceLandingComponent implements OnInit {
       res => this.placesExcel = res,
       err => console.log(err)
     )
+
+    console.log(this.jwtHelper.isTokenExpired()); // true or false    
+    
   }
 }
