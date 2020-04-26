@@ -40,16 +40,19 @@ module.exports = {
           message: "Sorry, you are not registered with us!"
         });
       }
+      
       const result = compareSync(body.password, results.password);
       if (result) {
+        //console.log(result)
         results.password = undefined;
         const jsontoken = sign({ result: results }, "qwe1234", {
-          expiresIn: "1h"
+          expiresIn: "7d"
         });
         return res.json({
           success: 1,
           message: "Login successfully",
-          token: jsontoken
+          token: jsontoken,
+          permission: results['permission']
         });
       } else {
         return res.json({

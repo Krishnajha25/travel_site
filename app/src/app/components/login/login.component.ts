@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient }    from '@angular/common/http';
 import { ValidateService } from '../../services/validate.service';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router'
 import { AuthService } from '../../services/auth.service';
 
@@ -39,8 +39,6 @@ export class LoginComponent implements OnInit {
   
   onSubmit(){
 
-    
-
     const user = {
       email: this.loginForm.value.email,
       password: this.loginForm.value.password
@@ -56,7 +54,15 @@ export class LoginComponent implements OnInit {
         res => {
           if(res['success'] == 1){
             localStorage.setItem('token', res['token'])
-            this.router.navigateByUrl('/')
+            localStorage.setItem('permission', res['permission'])
+            if(res['permission'] == 'admin'){
+              console.log("Admin")
+              this.router.navigateByUrl('/admin')
+            }
+            else{
+              console.log('Normal user')
+              this.router.navigateByUrl('/')
+          }
           }
           else if (res['success'] != 1){
             alert(res['message'])
