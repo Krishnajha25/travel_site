@@ -6,8 +6,10 @@ import { UsersComponent } from './users/users.component';
 import { AdminComponent } from './admin.component';
  
 const routes: Routes = [
-    {   path: 'admin', component: AdminComponent,
+    {   
+        path: 'admin', component: AdminComponent,
         children :[
+            { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
             { path: 'dashboard', component: DashboardComponent},
             { path: 'users', component: UsersComponent}
         ]

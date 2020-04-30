@@ -1,1 +1,11 @@
-<p>dashboard works!</p>
+<div class="chart-wrapper">
+    <canvas baseChart id="chart" width="400px" height="400px" 
+        [datasets]="lineChartData" 
+        [labels]="lineChartLabels" 
+        [options]="lineChartOptions"
+        [colors]="lineChartColors" 
+        [legend]="lineChartLegend"
+        [chartType]="lineChartType" 
+        [plugins]="lineChartPlugins">
+    </canvas>
+</div>

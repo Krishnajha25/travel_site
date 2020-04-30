@@ -25,7 +25,7 @@ import { PlacesService } from './services/places.service';
 import { ShowMorePipe } from './pipes/show-more.pipe';
 import { FooterComponent } from './components/footer/footer.component';
 import { AdminModule } from './admin/admin.module';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -58,6 +58,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
+    BrowserAnimationsModule,
   ],
   providers: [PlacesService ,ValidateService, AuthService, AuthenticateGuard, 
     {

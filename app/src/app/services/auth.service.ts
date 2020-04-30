@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient }    from '@angular/common/http';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt'
+import { decode } from 'punycode';
 
 //const jwtHelper = new JwtHelperService
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class  AuthService {
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -37,11 +38,20 @@ export class AuthService {
 
   logout(){
     localStorage.removeItem('token')
+    localStorage.removeItem('permission')
     this.router.navigateByUrl('/')
   }
 
   isTokenExpired(): boolean{
     const token = localStorage.getItem('token')
+    const decoded = this.helper.decodeToken(token)
+    console.log("Expiry sec => ",decoded.exp," Current time => ",decoded.iat)
+    if(decoded.exp < decoded.iat){
+      console.log("Expired")
+    }
+    else{
+      console.log("Not expired")
+    }
     return !this.helper.isTokenExpired(token);
   }
 

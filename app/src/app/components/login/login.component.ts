@@ -36,6 +36,10 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(3)]]
   });
 
+  refresh(): void{
+    
+  }
+
   
   onSubmit(){
 
@@ -58,10 +62,12 @@ export class LoginComponent implements OnInit {
             if(res['permission'] == 'admin'){
               console.log("Admin")
               this.router.navigateByUrl('/admin')
+              //this.refresh()
             }
             else{
               console.log('Normal user')
               this.router.navigateByUrl('/')
+              //this.refresh()
           }
           }
           else if (res['success'] != 1){
