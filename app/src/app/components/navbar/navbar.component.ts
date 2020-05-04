@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { MediaMatcher } from '@angular/cdk/layout';
 import { AuthService } from '../../services/auth.service'
 
 @Component({
@@ -14,7 +15,7 @@ export class NavbarComponent implements OnInit {
   isAdmin = false
 
   ngOnInit(){
-    this.isAdmin = this.authService.isAdmin()
+    this.isAdmin = this.authService.showAdminNav()
   }
 
 }

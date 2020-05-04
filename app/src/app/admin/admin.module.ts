@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav'
 import { MatListModule } from '@angular/material/list'
 import { MatButtonModule } from '@angular/material/button'
 import { MatIconModule } from '@angular/material/icon'
+import { MatTableModule } from '@angular/material/table'
 import { ChartsModule } from 'ng2-charts'
 
 
@@ -36,7 +37,8 @@ import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
     MatIconModule,
     MatButtonModule,
     MatListModule,
-    ChartsModule
+    ChartsModule,
+    MatTableModule
   ],
   exports:[
     AdminComponent,

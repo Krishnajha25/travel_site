@@ -15,28 +15,26 @@ export class PlaceLandingComponent implements OnInit {
 
   places = []
   placesExcel = []
+  defaultImage = "https://www.atms.com.au/wp-content/uploads/2019/11/placeholder.png?x93630"
   constructor(private router: Router, private placeService: PlacesService) { }
+  
+  noImage = false
+
 
   ngOnInit(): void {
-    // this.placeService.getPlaces()
-    // .subscribe(
-    //   res => this.places = res,
-    //   err => {
-    //     if( err instanceof HttpErrorResponse ){
-    //       if (err.status === 401){
-    //         console.log(err)
-    //       }
-    //     }
-    //   }
-    // )
-
+    
     this.placeService.getPlacesExcel()
     .subscribe(
-      res => this.placesExcel = res,
+      res => {
+        this.placesExcel = res
+      },
       err => console.log(err)
     )
 
+    
    //console.log(this.jwtHelper.isTokenExpired()); // true or false    
     
   }
+
+  //console.log(this.noImage)
 }

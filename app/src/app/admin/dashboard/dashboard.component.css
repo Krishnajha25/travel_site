@@ -3,3 +3,7 @@
     flex-direction: column;
     justify-content: center;
 }
+
+.navbar{
+    display: none;
+}

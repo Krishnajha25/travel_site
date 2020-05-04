@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient }    from '@angular/common/http';
 import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt'
-import { decode } from 'punycode';
+import { LocationStrategy } from '@angular/common';
 
 //const jwtHelper = new JwtHelperService
 
@@ -11,7 +11,7 @@ import { decode } from 'punycode';
 })
 export class  AuthService {
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router, private url: LocationStrategy) { }
 
   private loginURL = "http://localhost:3000/api/users/login"
   private registerURL = 'http://localhost:3000/api/users'
@@ -23,6 +23,10 @@ export class  AuthService {
 
   registerUser(user){
     return this.http.post<any>(this.registerURL, user)
+  }
+
+  getUsers(){
+    return this.http.get<any>(this.registerURL)  
   }
 
   loggedIn(): boolean{
@@ -45,21 +49,22 @@ export class  AuthService {
   isTokenExpired(): boolean{
     const token = localStorage.getItem('token')
     const decoded = this.helper.decodeToken(token)
-    console.log("Expiry sec => ",decoded.exp," Current time => ",decoded.iat)
-    if(decoded.exp < decoded.iat){
-      console.log("Expired")
-    }
-    else{
-      console.log("Not expired")
-    }
+    //console.log("Expiry sec => ",decoded.exp," Current time => ",decoded.iat)
+    // if(decoded.exp < decoded.iat){
+    //   console.log("Expired")
+    // }
+    // else{
+    //   console.log("Not expired")
+    // }
     return !this.helper.isTokenExpired(token);
   }
 
-  isAdmin(): boolean{
-    if(localStorage.getItem('permission') == 'admin'){
+  showAdminNav(){
+    if(this.url.path().includes('/admin') && localStorage.getItem('permission') == 'admin'){
+      //console.log('True')
       return true
     }
     return false
-  }
-  
+  }  
+
 }

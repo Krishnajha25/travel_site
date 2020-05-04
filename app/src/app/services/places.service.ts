@@ -1,24 +1,23 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlacesService {
 
-  private placesUrl = "http://localhost:3000/api/places";
-
-  private placesUrlExcel = "http://localhost:3000/api/file"
+  private placesUrl = "http://localhost:3000/api/file/"
 
   constructor(private http: HttpClient) { }
 
-  getPlaces(){
-     return this.http.get<any>(this.placesUrl)
+  getPlaceDetails(name: string){
+     return this.http.get<any>(this.placesUrl+name)
   }
 
   getPlacesExcel(){
-    return this.http.get<any>(this.placesUrlExcel)
+    return this.http.get<any>(this.placesUrl)
   }
+
 
 
 

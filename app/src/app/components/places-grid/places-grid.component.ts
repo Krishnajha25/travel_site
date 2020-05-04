@@ -10,6 +10,8 @@ import { Router } from '@angular/router'
 export class PlacesGridComponent implements OnInit {
 
   places = []
+  icon = "favorite_border"
+  defaultImage = "https://www.atms.com.au/wp-content/uploads/2019/11/placeholder.png?x93630"
   constructor(private placeService: PlacesService, private router: Router) { }
 
   ngOnInit(): void {
@@ -22,6 +24,16 @@ export class PlacesGridComponent implements OnInit {
 
   goToPlaces(){
     this.router.navigate(['/places'])
+  }
+
+
+  toggleIcon(newIcon: string){
+    if(this.icon === 'favorite_border'){
+      this.icon = "favorite"
+    }
+    else{
+      this.icon = "favorite_border"
+    }
   }
 
 }

@@ -58,3 +58,28 @@
 img.card-img-top {
     height: 230px;
 }
+
+.card{
+    position: relative;
+}
+
+.card:hover .material-icons{
+    display: block;
+}
+
+.card:hover .card-img-top{
+    filter: grayscale(100%);
+    transform: scale(1.05);
+    box-shadow: #333 5px 0px 10px;
+    transition: ease-in-out .2s;
+}
+
+.material-icons{
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px 10px;
+    color: #ffffff;
+    display: none;
+}

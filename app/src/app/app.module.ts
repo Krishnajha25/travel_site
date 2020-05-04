@@ -7,6 +7,7 @@ import {RouterModule, Routes} from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image'
 
 
 import { LoginComponent } from './components/login/login.component';
@@ -26,6 +27,12 @@ import { ShowMorePipe } from './pipes/show-more.pipe';
 import { FooterComponent } from './components/footer/footer.component';
 import { AdminModule } from './admin/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DefaultImagePipe } from './pipes/default-image.pipe';
+import { PlacesComponent } from './components/places/places.component';
+
+import { MatListModule } from '@angular/material/list'
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -33,7 +40,8 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthenticateGuard] },
   { path: 'contact', component: ContactComponent },
-  { path: 'places', component: PlaceLandingComponent }
+  { path: 'places', component: PlaceLandingComponent },
+  { path: 'places/:name', component: PlacesComponent}
 ]
 
 @NgModule({
@@ -49,7 +57,8 @@ const appRoutes: Routes = [
     PlacesGridComponent,
     PlaceLandingComponent,
     ShowMorePipe,
-
+    DefaultImagePipe,
+    PlacesComponent
   ],
   imports: [
     AdminModule,
@@ -59,6 +68,11 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
+    MatListModule,
+    MatSidenavModule,
+    LazyLoadImageModule.forRoot({
+      preset: scrollPreset // <-- tell LazyLoadImage that you want to use scrollPreset
+    })
   ],
   providers: [PlacesService ,ValidateService, AuthService, AuthenticateGuard, 
     {

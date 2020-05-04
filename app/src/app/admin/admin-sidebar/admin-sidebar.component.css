@@ -34,3 +34,7 @@ span.material-icons {
     margin-left: 5px;
     font-size: 22px;
 }
+
+.go-to-site{
+  transform: rotate(180deg);
+}

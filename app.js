@@ -16,14 +16,25 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(cors())
 
-app.get('/api/file', checkToken, (req, res) => {
-  //xyz = []
+app.get('/api/file', (req, res) => {
   xlsxFile('./RECORD.xlsx').then((rows) => 
     {
       res.json(rows)
     }
   )
-  //return res.json(xyz)
+})
+
+app.get('/api/file/:name', (req, res) => {
+  const name = req.params.name
+  xlsxFile('./RECORD.xlsx').then((rows) => 
+    {
+      for (let i = 0; i < rows.length; i++) {
+        if(rows[i][0] === name){
+          return res.json(rows[i])
+        }
+      }
+    }
+  )
 })
 
 
