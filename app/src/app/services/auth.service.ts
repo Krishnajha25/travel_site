@@ -14,7 +14,7 @@ export class  AuthService {
   constructor(private http: HttpClient, private router: Router, private url: LocationStrategy) { }
 
   private loginURL = "http://localhost:3000/api/users/login"
-  private registerURL = 'http://localhost:3000/api/users'
+  private baseUrl = 'http://localhost:3000/api/users'
   helper = new JwtHelperService();
   
   loginRequest(user){
@@ -22,11 +22,11 @@ export class  AuthService {
   }
 
   registerUser(user){
-    return this.http.post<any>(this.registerURL, user)
+    return this.http.post<any>(this.baseUrl, user)
   }
 
   getUsers(){
-    return this.http.get<any>(this.registerURL)  
+    return this.http.get<any>(this.baseUrl)  
   }
 
   loggedIn(): boolean{
@@ -65,6 +65,16 @@ export class  AuthService {
       return true
     }
     return false
-  }  
+  }
+
+  deleteUser(id: number){
+    return this.http.delete(this.baseUrl+"/"+id)
+  }
+
+  
+
+  updateUser(user){
+    return this.http.patch(this.baseUrl, user)
+  }
 
 }

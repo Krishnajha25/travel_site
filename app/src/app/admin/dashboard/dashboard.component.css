@@ -7,3 +7,56 @@
 .navbar{
     display: none;
 }
+.container{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.card{
+    height: 200px;
+    width: 200px;
+    box-shadow: 5px 5px 10px #333;
+    background: #e67e22;
+}
+
+.material-icons{
+    color: #fff;
+    font-size: 100px;
+    text-align: center;
+}
+
+.card-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    /* position: relative; */
+}
+
+.card-title{
+    /* position: absolute;
+    top: 50%;
+    left: 50%; */
+    margin: 0px;
+    color: #fff;
+}
+
+.card-number{
+    margin: 0px;
+    color: #fff;
+}
+
+@media only screen and (max-width: 992px){
+
+    .container{
+        justify-content: center;
+    }
+
+    .card{
+        margin-bottom: 20px;
+    }
+
+}

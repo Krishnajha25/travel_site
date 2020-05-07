@@ -25,7 +25,7 @@
                 Contact
                 <span class="material-icons">contact_support</span>
             </a>
-            <a mat-list-item *ngIf="authService.loggedIn()" (click)="authService.logout()">
+            <a mat-list-item routerLink="/" *ngIf="authService.loggedIn()" (click)="authService.logout()">
                 Logout
                 <span class="material-icons">exit_to_app</span>
             </a>

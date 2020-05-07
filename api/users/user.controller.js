@@ -109,17 +109,20 @@ module.exports = {
       });
     });
   },
+
   deleteUser: (req, res) => {
-    const data = req.body;
-    deleteUser(data, (err, results) => {
+    const body = req.params.id;
+    //console.log(body)
+    deleteUser(body, (err, results) => {
       if (err) {
-        console.log(err);
+        // console.log("Error => ",err);
+        // console.log("Results => ",results);
         return;
       }
-      if (!results) {
+      if (results < 1) {
         return res.json({
           success: 0,
-          message: "Record Not Found"
+          message: "Record Not Found",
         });
       }
       return res.json({

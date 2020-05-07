@@ -57,12 +57,11 @@ module.exports = {
   },
   updateUser: (data, callBack) => {
     pool.query(
-      `update registration set firstName=?, lastName=?, email=?, password=? where id = ?`,
+      `update registration set firstName=?, lastName=?, email=? where id = ?`,
       [
         data.first_name,
         data.last_name,
         data.email,
-        data.password,
         data.id
       ],
       (error, results, fields) => {
@@ -76,12 +75,13 @@ module.exports = {
   deleteUser: (data, callBack) => {
     pool.query(
       `delete from registration where id = ?`,
-      [data.id],
+      [data],
       (error, results, fields) => {
         if (error) {
           callBack(error);
         }
-        return callBack(null, results[0]);
+        //console.log("Results => ",results.affectedRows)
+        return callBack(null, results.affectedRows);
       }
     );
   }

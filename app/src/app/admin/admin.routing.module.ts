@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
- 
+import { Routes, RouterModule } from '@angular/router'; 
 import { DashboardComponent } from './dashboard/dashboard.component'
 import { UsersComponent } from './users/users.component';
 import { AdminComponent } from './admin.component';
+import { AuthenticateGuard } from '../guards/authenticate.guard';
  
 const routes: Routes = [
     {   
-        path: 'admin', component: AdminComponent,
+        path: 'admin', component: AdminComponent, canActivate: [AuthenticateGuard],
         children :[
             { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
             { path: 'dashboard', component: DashboardComponent},
