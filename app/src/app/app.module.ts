@@ -32,6 +32,8 @@ import { PlacesComponent } from './components/places/places.component';
 
 import { MatListModule } from '@angular/material/list'
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { CommentComponent } from './components/comment/comment.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 const appRoutes: Routes = [
@@ -58,7 +60,8 @@ const appRoutes: Routes = [
     PlaceLandingComponent,
     ShowMorePipe,
     DefaultImagePipe,
-    PlacesComponent
+    PlacesComponent,
+    CommentComponent
   ],
   imports: [
     AdminModule,
@@ -70,6 +73,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatListModule,
     MatSidenavModule,
+    ChartsModule,
     LazyLoadImageModule.forRoot({
       preset: scrollPreset // <-- tell LazyLoadImage that you want to use scrollPreset
     })

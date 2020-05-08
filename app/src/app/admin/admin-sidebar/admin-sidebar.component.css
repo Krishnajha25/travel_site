@@ -31,8 +31,17 @@
   }
   
 span.material-icons {
-    margin-left: 5px;
-    font-size: 18px;
+  font-size: 25px;
+  margin-right: 10px;
+}
+
+.mat-sidenav{
+  width: 180px;   
+  background: #a576fb;
+}
+
+.mat-list-item{
+  color: #fff
 }
 
 .go-to-site{

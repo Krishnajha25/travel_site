@@ -36,6 +36,13 @@ export class  AuthService {
     return false
   }
 
+  isAdmin(){
+    if(localStorage.getItem('permission') === 'admin'){
+      return true
+    }
+    return false
+  }
+
   getToken() {
     return localStorage.getItem('token')
   }

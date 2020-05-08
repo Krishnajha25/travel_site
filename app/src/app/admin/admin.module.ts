@@ -18,6 +18,8 @@ import { AdminSidebarComponent } from './admin-sidebar/admin-sidebar.component';
 import { DialogCompComponent } from './dialog-comp/dialog-comp.component';
 import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
+import { DoughnutChartComponent } from './charts/doughnut-chart/doughnut-chart.component';
 
 
 
@@ -30,7 +32,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     DashboardComponent,
     AdminHeaderComponent,
     AdminSidebarComponent,
-    DialogCompComponent
+    DialogCompComponent,
+    BarChartComponent,
+    DoughnutChartComponent
   ],
   imports: [
     CommonModule,

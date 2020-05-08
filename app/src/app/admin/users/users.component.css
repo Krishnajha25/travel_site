@@ -6,3 +6,8 @@ table {
   margin-top: 20px;
   padding: 10px;
 }
+
+.mat-header-cell{
+  background: #a576fb;
+  color: #fff;
+}

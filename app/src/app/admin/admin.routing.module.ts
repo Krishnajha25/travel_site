@@ -4,10 +4,11 @@ import { DashboardComponent } from './dashboard/dashboard.component'
 import { UsersComponent } from './users/users.component';
 import { AdminComponent } from './admin.component';
 import { AuthenticateGuard } from '../guards/authenticate.guard';
+import { AdminGuard } from '../guards/admin.guard';
  
 const routes: Routes = [
     {   
-        path: 'admin', component: AdminComponent, canActivate: [AuthenticateGuard],
+        path: 'admin', component: AdminComponent, canActivate: [AuthenticateGuard, AdminGuard],
         children :[
             { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
             { path: 'dashboard', component: DashboardComponent},
