@@ -15,5 +15,4 @@ router.post("/login", login);
 router.patch("/", checkToken, updateUsers);
 router.delete("/:id", checkToken, deleteUser);
 
-
 module.exports = router;

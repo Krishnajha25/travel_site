@@ -13,18 +13,27 @@
               <span class="material-icons">dashboard</span>  
               Dashboard
             </a>
+
             <a mat-list-item routerLink="users">
               <span class="material-icons">supervisor_account</span>  
               Users
             </a>
+
+            <a mat-list-item routerLink="comments">
+              <span class="material-icons">supervisor_account</span>  
+              Comments
+            </a>
+
             <a mat-list-item routerLink="/" target="_blank">
               <span class="material-icons go-to-site">transit_enterexit</span>
               Go to site
             </a>
+
             <a mat-list-item routerLink=".">
               <span class="material-icons">contact_support</span>  
               Contact
             </a>
+
             <a mat-list-item routerLink="/" *ngIf="authService.loggedIn()" (click)="authService.logout()">
               <span class="material-icons">exit_to_app</span>  
               Logout

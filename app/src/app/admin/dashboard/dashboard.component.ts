@@ -3,6 +3,7 @@ import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import { AuthService } from 'src/app/services/auth.service';
 import { PlacesService } from 'src/app/services/places.service';
+import { CommentsService } from 'src/app/services/comments.service';
 
 
 @Component({
@@ -12,10 +13,11 @@ import { PlacesService } from 'src/app/services/places.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private authService: AuthService, private placeService: PlacesService) { }
+  constructor(private authService: AuthService, private placeService: PlacesService, private comment: CommentsService) { }
 
   totalUsers
   totalPlaces
+  totalComments
 
   ngOnInit(): void {
 
@@ -30,6 +32,13 @@ export class DashboardComponent implements OnInit {
       res => this.totalPlaces = res.length,
       err => console.log(err)
     )
+
+    this.comment.getComments()
+    .subscribe(
+      res => this.totalComments = res["message"].length,
+      err => console.log(err)
+    )
+
 
   }
 

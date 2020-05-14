@@ -1,0 +1,28 @@
+table {
+    width: 100%;
+  }
+
+.container.text-center {
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.mat-header-cell{
+  background: #a576fb;
+  color: #fff;
+}
+
+.delete-button{
+  border-radius: 62px;
+  background: #e74c3c;
+  border: none;
+  width: 40px;
+  height: 40px;
+  box-shadow: 2px 2px 6px #888585;
+}
+
+.mat-icon{
+  font-size: 21px;
+  color: #fff;
+  margin-top: 6px;
+}

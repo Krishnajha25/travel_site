@@ -11,6 +11,9 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatTableModule } from '@angular/material/table'
 import { MatDialogModule } from '@angular/material/dialog'
 import { ChartsModule } from 'ng2-charts'
+// import {MatSnackBarModule} from '@angular/material/snack-bar';
+// import { MatSnackBarModule } from '@angular/material/snack-bar'
+
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AdminHeaderComponent } from './admin-header/admin-header.component';
@@ -20,9 +23,7 @@ import { MatFormField, MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BarChartComponent } from './charts/bar-chart/bar-chart.component';
 import { DoughnutChartComponent } from './charts/doughnut-chart/doughnut-chart.component';
-
-
-
+import { CommentAdminComponent } from './comment-admin/comment-admin.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { DoughnutChartComponent } from './charts/doughnut-chart/doughnut-chart.c
     AdminSidebarComponent,
     DialogCompComponent,
     BarChartComponent,
-    DoughnutChartComponent
+    DoughnutChartComponent,
+    CommentAdminComponent,
   ],
   imports: [
     CommonModule,
@@ -49,11 +51,11 @@ import { DoughnutChartComponent } from './charts/doughnut-chart/doughnut-chart.c
     MatDialogModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    // MatSnackBarModule,
   ],
   exports:[
     AdminComponent,
     UsersComponent,
-    
     AdminHeaderComponent
   ],
   entryComponents: [

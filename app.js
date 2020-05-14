@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const userRouter = require("./api/users/user.router");
+const commentRouter = require('./api/comment/comment.router');
+
 var path = require('path')
 var cors = require("cors")
 var bodyParser = require("body-parser")
@@ -40,7 +42,9 @@ app.get('/api/file/:name', (req, res) => {
 
 app.use(express.static(path.join(__dirname, 'public')))
 
-app.use("/api/users", userRouter);
+app.use("/api/users", userRouter);    //User router
+
+app.use("/api/comment", commentRouter);   //Comment Router
 
 const port = process.env.PORT || 4000;
 

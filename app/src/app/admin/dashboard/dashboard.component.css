@@ -18,15 +18,16 @@
 .card{
     height: 200px;
     width: 200px;
-    box-shadow: 5px 5px 10px #333;
+    box-shadow: 5px 5px 10px #a1a0a0;
     background: #a576fb;
     cursor: default;
 }
 
 .material-icons{
     color: #fff;
-    font-size: 70px;
+    font-size: 54px;
     text-align: center;
+    margin: 15px auto;
 }
 
 .card-container{

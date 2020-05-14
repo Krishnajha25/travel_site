@@ -11,3 +11,22 @@ table {
   background: #a576fb;
   color: #fff;
 }
+
+span.mat-button-wrapper{
+  padding: 0px;
+}
+
+.delete-button{
+  border-radius: 62px;
+  background: #e74c3c;
+  border: none;
+  width: 40px;
+  height: 40px;
+  box-shadow: 2px 2px 6px #888585;
+}
+
+.mat-icon{
+  font-size: 21px;
+  color: #fff;
+  margin-top: 6px;
+}

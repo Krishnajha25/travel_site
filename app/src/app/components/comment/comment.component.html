@@ -1,1 +1,45 @@
-<p>comment works!</p>
+<div class="container">
+    <mat-divider></mat-divider>
+    <h3>Please share your experience of {{placeName}}.. </h3>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="comment-wrapper">
+                <div class="avatar">
+                    <span class="profile material-icons">
+                        account_circle
+                    </span>
+                </div>
+                <div class="triangle-left"></div>
+                <span class="bmd-form-group" style="padding: 0px;">
+                    <textarea name="comment" [(ngModel)]="feedback" id="comment-box" cols="30" rows="10" placeholder="Please share your experience of {{placeName | lowercase}}.."></textarea>
+                </span>
+            </div>
+            <button mat-raised-button color="primary" class="comment-post-button" (click)="commentSubmit()">Post</button>
+        </div>
+    </div>
+    <h3>What others have shared?</h3>
+    <div class="row">
+        <div class="col-md-12" *ngFor="let comment of comments">
+            <div class="posted-comment-wrapper">
+                <div class="avatar">
+                    <span class="profile material-icons">
+                        account_circle
+                    </span>
+                </div>
+                <div class="triangle-top"></div>
+                <div class="comment">
+                    <p  class="feedback">{{ comment.feedback }}</p>
+                    <div class="comment-meta-data">
+                        {{"from "+ comment.firstName+" "+comment.lastName +" | " }} {{ comment.commentOn | date }}
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="noComment">
+        <div class="col-md-12">
+            <p class="no-comments"> No comments on {{ placeName |  titlecase }} yet!</p>
+        </div>
+    </div>
+</div>

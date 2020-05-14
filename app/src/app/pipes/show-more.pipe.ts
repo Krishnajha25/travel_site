@@ -9,3 +9,4 @@ export class ShowMorePipe implements PipeTransform {
     return value.slice(0, limit) + "..."
   }
 }
+

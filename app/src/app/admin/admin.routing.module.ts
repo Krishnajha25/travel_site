@@ -5,6 +5,8 @@ import { UsersComponent } from './users/users.component';
 import { AdminComponent } from './admin.component';
 import { AuthenticateGuard } from '../guards/authenticate.guard';
 import { AdminGuard } from '../guards/admin.guard';
+import { CommentAdminComponent } from './comment-admin/comment-admin.component';
+
  
 const routes: Routes = [
     {   
@@ -12,7 +14,8 @@ const routes: Routes = [
         children :[
             { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
             { path: 'dashboard', component: DashboardComponent},
-            { path: 'users', component: UsersComponent}
+            { path: 'users', component: UsersComponent},
+            { path: 'comments', component: CommentAdminComponent}
         ]
     },
 ];

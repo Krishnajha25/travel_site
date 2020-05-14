@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+
 //import { JwtModule } from '@auth0/angular-jwt'
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
@@ -29,11 +30,19 @@ import { AdminModule } from './admin/admin.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DefaultImagePipe } from './pipes/default-image.pipe';
 import { PlacesComponent } from './components/places/places.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import{ MatFormFieldModule } from '@angular/material/form-field'
 
+
+import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatListModule } from '@angular/material/list'
 import { MatSidenavModule } from '@angular/material/sidenav';
+import {MatButtonModule} from '@angular/material/button';
 import { CommentComponent } from './components/comment/comment.component';
 import { ChartsModule } from 'ng2-charts';
+import { SearchPipe } from './pipes/search.pipe';
+import { SearchFilterPipe } from './pipes/search-filter.pipe';
+
 
 
 const appRoutes: Routes = [
@@ -61,17 +70,23 @@ const appRoutes: Routes = [
     ShowMorePipe,
     DefaultImagePipe,
     PlacesComponent,
-    CommentComponent
+    CommentComponent,
+    SearchPipe,
+    SearchFilterPipe,
   ],
   imports: [
     AdminModule,
     BrowserModule,
     FormsModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     MatListModule,
+    MatButtonModule,
+    MatSnackBarModule,
     MatSidenavModule,
     ChartsModule,
     LazyLoadImageModule.forRoot({

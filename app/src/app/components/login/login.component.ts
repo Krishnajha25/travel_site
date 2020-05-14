@@ -4,6 +4,7 @@ import { ValidateService } from '../../services/validate.service';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router'
 import { AuthService } from '../../services/auth.service';
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,14 @@ export class LoginComponent implements OnInit {
     passwordPlaceholder: "Enter password"
   }
 
-  constructor(private http: HttpClient, private login: AuthService, private validateService: ValidateService, private fb: FormBuilder, private router: Router) { }
+  constructor(
+    private http: HttpClient, 
+    private login: AuthService, 
+    private validateService: ValidateService, 
+    private fb: FormBuilder, 
+    private router: Router, 
+    private matSnackBar: MatSnackBar
+    ) { }
 
   submitted = false;
 
@@ -36,11 +44,12 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required, Validators.minLength(3)]]
   });
 
-  refresh(): void{
-    
+  openSnackbar(message: string, action: string){
+    this.matSnackBar.open(message, action, {
+      duration: 3000,
+    })
   }
 
-  
   onSubmit(){
 
     const user = {
@@ -59,10 +68,14 @@ export class LoginComponent implements OnInit {
           if(res['success'] == 1){
             localStorage.setItem('token', res['token'])
             localStorage.setItem('permission', res['permission'])
+            localStorage.setItem('userId', res['userId'])
+            localStorage.setItem('firstName', res['firstName'])
+            localStorage.setItem('lastName', res['lastName'])
+            localStorage.setItem('email', res['email'])
             if(res['permission'] == 'admin'){
               console.log("Admin")
               this.router.navigateByUrl('/admin')
-              //this.refresh()
+              this.openSnackbar("You have logged in successfully", "Close")
             }
             else{
               console.log('Normal user')

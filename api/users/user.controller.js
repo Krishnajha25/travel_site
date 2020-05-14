@@ -52,7 +52,11 @@ module.exports = {
           success: 1,
           message: "Login successfully",
           token: jsontoken,
-          permission: results['permission']
+          permission: results['permission'],
+          userId: results['id'],
+          firstName: results['firstName'],
+          lastName: results['lastName'],
+          email: results['email']
         });
       } else {
         return res.json({

@@ -23,6 +23,7 @@
     "@angular/platform-browser-dynamic": "~9.0.7",
     "@angular/router": "~9.0.7",
     "@auth0/angular-jwt": "^4.0.0",
+    "angular-ng-autocomplete": "^2.0.1",
     "angular2-flash-messages": "^3.0.1",
     "chart.js": "^2.9.3",
     "ng-flash-messages": "^0.3.0",

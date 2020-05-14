@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogCompComponent } from '../dialog-comp/dialog-comp.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-users',
@@ -13,29 +15,14 @@ export class UsersComponent implements OnInit {
   users =[]
   editField: any;
   dataSource = this.users
-  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email'];
+  displayedColumns: string[] = ['id', 'firstName', 'lastName', 'email', 'signUpOn', 'action'];
 
 
-  constructor(private authService: AuthService, private dialog: MatDialog) { }
-
-  // openDialog(){
-  //   const dialogConfig = new MatDialogConfig
-
-  //   //dialogConfig.disableClose = true
-  //   dialogConfig.autoFocus = true
-
-  //   dialogConfig.data = {
-  //     id: 1,
-  //     title: 'Angular For Beginners'
-  //   };
-
-  //   const dialogRef = this.dialog.open(DialogCompComponent, dialogConfig)
-
-  //   dialogRef.afterClosed().subscribe(
-  //     data => console.log("Dialog output:", data)
-  // ); 
-  // }
-
+  constructor(
+    private authService: AuthService, 
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar
+    ) { }
   
 
   ngOnInit(): void {
@@ -47,18 +34,22 @@ export class UsersComponent implements OnInit {
       },
       err => console.log(err)
     )
+  }
 
-   // console.log(this.users)
-    
+  openSnackBar(message: string, action: string) {
+    this.snackBar.open(message, action, {
+       duration: 2000,
+    });
   }
 
   remove(id: any){
-    console.log(id)
+    //console.log(id)
     this.authService.deleteUser(id)
     .subscribe(
       res => {
         if(res["success"] === 1){
-          this.users.splice(id, 1)
+          this.openSnackBar("User with Id: "+id+" deleted successfully!","Close")
+          this.ngOnInit()
         }
       },
       err => console.log(err)
