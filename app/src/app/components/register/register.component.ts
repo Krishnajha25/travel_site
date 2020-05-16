@@ -77,32 +77,6 @@ export class RegisterComponent implements OnInit {
       )
     }
 
-
-
-    // if(!this.validateService.validateRegister(user)){
-    //   console.log("Please enter the required fields")
-    //   return false;
-    // }
-
-    // if(!this.validateService.validateFirstName(user.first_name)){
-    //   console.log("Only characters are allowed in first name")
-    //   return false;
-    // }
-
-    // if(!this.validateService.validateLastName(user.last_name)){
-    //   console.log("Only characters are allowed in first name")
-    //   return false;
-    // }
-
-    // if(!this.validateService.validateEmail(user.email)){
-    //   console.log("Please enter a valid email");
-    //   return false;
-    // }
-
-    // if(!this.validateService.validatePassword(user.password, user.confirm_password)){
-    //   console.log('Password do not match')
-    // }
-
   }
 
 }

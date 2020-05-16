@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlacesService } from '../../services/places.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-//import { JwtHelperService } from '@auth0/angular-jwt'
+import { NgxSpinnerService } from "ngx-spinner";
 
 
 
@@ -13,20 +13,29 @@ import { Router } from '@angular/router';
 })
 export class PlaceLandingComponent implements OnInit {
 
+  p: number = 1;
   places = []
   placesExcel = []
   defaultImage = "https://www.atms.com.au/wp-content/uploads/2019/11/placeholder.png?x93630"
-  constructor(private router: Router, private placeService: PlacesService) { }
+  constructor(
+    private router: Router, 
+    private placeService: PlacesService,
+    private spinner: NgxSpinnerService
+    ) { }
   
   noImage = false
 
+  
+
 
   ngOnInit(): void {
+    this.spinner.show()
     
     this.placeService.getPlacesExcel()
     .subscribe(
       res => {
         this.placesExcel = res
+        this.spinner.hide()
       },
       err => console.log(err)
     )

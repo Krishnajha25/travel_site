@@ -1,26 +1,8 @@
-<!-- <div class="container">
-    <div class="row">
-        <div class="col-md-4" *ngFor="let place of places">
-            <div class="card text-center">
-                <img class="card-img-top" [src]="place.imageSource" alt="Card image cap">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        {{ place.name }}
-                    </h5>
-                    <p class="card-text">
-                        {{ place.desc }}
-                    </p>
-                </div>
-                <a href="" class="btn btn-primary">Visit {{ place.name }}</a>
-            </div>
-        </div>
-    </div>
-</div> -->
-
+<ngx-spinner></ngx-spinner>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-4" *ngFor="let place of placesExcel">
+        <div class="col-md-4" *ngFor="let place of placesExcel | paginate: { itemsPerPage: 9, currentPage: p }">
             <div class="card text-center">
                 <!-- <img class="card-img-top" *ngIf="noImage" [src] = setDefaultPic() alt="Card image cap"> -->
                 <img class="card-img-top" [defaultImage]="defaultImage" [lazyLoad]="place[1]" alt="Card image cap">
@@ -36,5 +18,8 @@
                 <a [routerLink]="[ '/places', place[0] ]" class="btn btn-primary">Visit {{ place[0] }}</a>
             </div>
         </div>
+    </div>
+    <div class="pagination-control">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
 </div>

@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PlacesService } from 'src/app/services/places.service';
 import { SearchPipe } from 'src/app/pipes/search.pipe';
-
+import { NgxSpinnerService } from "ngx-spinner";
 
 @Component({
   selector: 'app-home',
@@ -23,11 +23,15 @@ export class HomeComponent implements OnInit {
   public keyword = 'name';
   public historyHeading: string = 'Recently selected';
 
-  constructor(private fb: FormBuilder, private places: PlacesService) {
-    this.searchForm = fb.group({
-      search: [{value: '', disabled: false}, Validators.required]
+  constructor(
+    private fb: FormBuilder, 
+    private places: PlacesService,
+    private spinner: NgxSpinnerService
+    ) {
+      this.searchForm = fb.group({
+        search: [{value: '', disabled: false}, Validators.required]
     })
-  }
+    }
 
   page = {
     title: "Home",
@@ -37,12 +41,14 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
 
+    this.spinner.show()
     this.places.getPlacesExcel()
     .subscribe(
       res => {
         for(let i = 0; i < res.length; i++) {
           this.placeNames.push(res[i][0])
         }
+        this.spinner.hide()
         
       },
       err => console.log(err)

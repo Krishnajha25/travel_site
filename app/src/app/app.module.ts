@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 
 //import { JwtModule } from '@auth0/angular-jwt'
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {RouterModule, Routes} from '@angular/router';
@@ -9,7 +9,8 @@ import {RouterModule, Routes} from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { LazyLoadImageModule, scrollPreset } from 'ng-lazyload-image'
-
+import { NgxSpinnerModule } from 'ngx-spinner'
+import { NgxPaginationModule } from "ngx-pagination";
 
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -88,6 +89,8 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatSnackBarModule,
     MatSidenavModule,
+    NgxSpinnerModule,
+    NgxPaginationModule,
     ChartsModule,
     LazyLoadImageModule.forRoot({
       preset: scrollPreset // <-- tell LazyLoadImage that you want to use scrollPreset
@@ -99,6 +102,7 @@ const appRoutes: Routes = [
     useClass: TokenInterceptorService,
     multi: true
   }],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt'
 import { LocationStrategy } from '@angular/common';
 import { MatSnackBar } from '@angular/material/snack-bar';
+//import { BehaviorSubject } from 'rxjs/Rx'
 
 
 //const jwtHelper = new JwtHelperService

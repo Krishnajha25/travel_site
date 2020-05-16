@@ -38,3 +38,11 @@ img.card-img-top {
 .card-title{
     cursor: default;
 }
+
+.col-md-4:nth-child(n){
+    margin-bottom: 20px;
+}
+
+.pagination-control{
+    text-align: center;
+}

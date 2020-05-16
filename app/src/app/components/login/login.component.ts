@@ -32,8 +32,6 @@ export class LoginComponent implements OnInit {
   submitted = false;
 
   isLoggedIn = false
-
-  url = 'http://localhost:3000/api/users/login';
   
   get loginFormControl() {
     return this.loginForm.controls;
@@ -89,22 +87,7 @@ export class LoginComponent implements OnInit {
         },
         err => console.log(err)
       )
-      // this.http.post(this.url,user).subscribe(
-      //   (response) => {
-      //     if(response['success'] == 1){
-      //       this.isLoggedIn = true
-      //       const token = response['token']
-      //       this.router.navigateByUrl('/')
-      //       console.log(response['message'])
-      //     }
-      //     else if (response['success'] != 1){
-      //       alert(response['message'])
-      //     }
           
-      //     //console.log(response)
-      //   },
-      //   (error) => console.log(error)
-      // )      
     }
     else{
       alert("Something went wrong!, Please try again!")

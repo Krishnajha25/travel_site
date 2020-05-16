@@ -1,5 +1,45 @@
 footer{
-    min-height: 50px;
-    margin-top: 10px;
+    height: 15vh;
     background: #ccc;
+    /* position: fixed; */
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.fab {
+    font-size: 40px;
+}
+
+.social-meda-container {
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.social{
+    padding: 10px;
+    margin-top: 20px;
+}
+
+.fab{
+    cursor: pointer;
+}
+
+.fa-twitter-square:hover{
+    color: #1DA1F2;
+}
+
+.fa-facebook-square:hover{
+    color: #1DA1F2;
+}
+
+.fa-instagram-square:hover{
+    color: #E1306C;
+}
+
+.social:nth-child(2){
+    margin-right: 20px;
+    margin-left: 20px;
 }
