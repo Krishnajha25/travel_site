@@ -72,6 +72,21 @@ module.exports = {
       }
     );
   },
+
+  updateUserPassword: (email, password, callBack) => {
+    pool.query(
+      `update registration set password=? where email = ?`,
+      [password, email],
+      (error, results, fields) => {
+        if (error) {
+          callBack(error);
+        }
+        //console.log()
+        return callBack(null, results.affectedRows);
+      }
+    );
+  },
+
   deleteUser: (data, callBack) => {
     pool.query(
       `delete from registration where id = ?`,
