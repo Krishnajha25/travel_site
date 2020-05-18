@@ -1,7 +1,7 @@
 const contactRouter = require("express").Router()
 const{ checkToken } = require('../../auth/token_validation')
-const { sendMail } = require('./contact.controller')
+const { contactController } = require('./contact.controller')
 
-contactRouter.post("/", checkToken, sendMail)
+contactRouter.post("/", checkToken, contactController)
 
 module.exports = contactRouter

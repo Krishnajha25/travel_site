@@ -9,7 +9,7 @@ module.exports = {
 
     insertToken: (email, token, callback) =>{
 
-        tokenExpiry = Date.now() + 3600000
+        tokenExpiry = Date.now() + 3600000 //Adds 1 hour to the current time
         pool.query('update registration set resetToken = ?, tokenExpiry = ? where email = ?', 
         [token, tokenExpiry, email],
         (error, results, fields) => {

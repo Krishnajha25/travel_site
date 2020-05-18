@@ -2,23 +2,45 @@ const {
     sendMail
 } = require('./contact.service')
 
+const { getUserByUserEmail } = require('../users/user.service')
+
 module.exports = {
 
-    sendMail: (req, res) => {
+    contactController: (req, res) => {
+
         const data = req.body
-        sendMail(data, (error, response) => {
-            if(error){
+        //console.log(data)
+        getUserByUserEmail(data.email, (err, response) => {
+            if(err){
                 return res.status(200).json({
-                    succes: 0,
+                    success: 0,
                     message: "Error occured",
-                    Error: error
+                    Error: err
                 })
             }
-            return res.status(200).json({
-                success: 1,
-                message: "Mail Sent",
-                response: response
+            if(!response){
+                return res.status(200).json({
+                    success: 0,
+                    message: "Sorry the email is not registered with us. Please use the resgistered email"
+                })
+            }
+
+            sendMail(data, (error, response) => {
+                if(error){
+                    return res.status(200).json({
+                        success: 0,
+                        message: "Error occured",
+                        Error: error
+                    })
+                }
+                return res.status(200).json({
+                    success: 1,
+                    message: "Mail Sent",
+                    response: response
+                })
             })
+
         })
+
     }
 }

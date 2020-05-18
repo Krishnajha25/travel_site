@@ -99,6 +99,21 @@ module.exports = {
         return callBack(null, results.affectedRows);
       }
     );
+  },
+
+  removeToken: (email, callBack) => {
+    pool.query(
+      `update registration set resetToken = null, tokenExpiry = null where email = ?`,
+      [email],
+      (error, results, fields) => {
+        if (error) {
+          callBack(error);
+        }
+        //console.log("Results => ",results.affectedRows)
+        return callBack(null, results.affectedRows);
+      }
+    );
   }
+  
 
 };

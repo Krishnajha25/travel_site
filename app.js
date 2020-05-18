@@ -3,8 +3,8 @@ const express = require("express");
 const nodemailer = require('nodemailer')
 const app = express();
 const { hashSync, genSaltSync, compareSync } = require("bcrypt");
-const pool = require('./config/database')
-const { getUserByUserEmail, updateUserPassword } = require('./api/users/user.service')
+//const pool = require('./config/database')
+const { getUserByUserEmail, updateUserPassword, removeToken } = require('./api/users/user.service')
 const { insertToken, sendMail, checkResetToken, sendPasswordChangedMail } = require('./api/forgetPassword/forget.service')
 const crypto = require('crypto')
 
@@ -79,7 +79,7 @@ app.post('/api/forgot', function(req, res){
     if(!result){
       return res.status(200).json({
         success: 0,
-        message: "Get user by email => Email does not exist"
+        message: "Email does not exist"
       })
     }
 
@@ -91,10 +91,10 @@ app.post('/api/forgot', function(req, res){
           Error: err
         })
       }
-      if(!result){
+      if(result < 1){
         return res.status(200).json({
           success: 0,
-          message: "Insert token => Email does not exist"
+          message: "Email does not exist"
         })
       }
 
@@ -180,7 +180,7 @@ app.post('/api/reset/:email/:token', (req, res) => {
     if(result < 1){
       return res.json({
         success: 0,
-        messgae: "Token expired"
+        message: "Token expired"
       })
     }
 
@@ -225,12 +225,27 @@ app.post('/api/reset/:email/:token', (req, res) => {
             Error: err
           })
         }
-        return res.status(200).json({
-          success: 1,
-          message: "Change Email sent",
-          Result: result
+        
+        removeToken(email, (error, result) => {
+          if(error){
+            return res.status(200).json({
+              success: 0,
+              message: 'Some error occured',
+              Error: error
+            })
+          }
+          if(result < 1){
+            return res.status(200).json({
+              success: 0,
+              message: 'Could not reset token'
+            })
+          }
+          return res.status(200).json({
+            success: 1,
+            message: "Your password has been changed successully."
+          })
         })
-      })
+      })                  
 
     })
     
