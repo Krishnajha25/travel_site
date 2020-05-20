@@ -33,6 +33,7 @@ import { DefaultImagePipe } from './pipes/default-image.pipe';
 import { PlacesComponent } from './components/places/places.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import{ MatFormFieldModule } from '@angular/material/form-field'
+import {MatInputModule} from '@angular/material/input';
 
 
 import { MatSnackBarModule } from "@angular/material/snack-bar";
@@ -43,7 +44,8 @@ import { CommentComponent } from './components/comment/comment.component';
 import { ChartsModule } from 'ng2-charts';
 import { SearchPipe } from './pipes/search.pipe';
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
-
+import { NewPasswordComponent } from './components/new-password/new-password.component';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 const appRoutes: Routes = [
@@ -74,6 +76,7 @@ const appRoutes: Routes = [
     CommentComponent,
     SearchPipe,
     SearchFilterPipe,
+    NewPasswordComponent,
   ],
   imports: [
     AdminModule,
@@ -81,6 +84,7 @@ const appRoutes: Routes = [
     FormsModule,
     MatAutocompleteModule,
     MatFormFieldModule,
+    MatInputModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
@@ -91,6 +95,7 @@ const appRoutes: Routes = [
     MatSidenavModule,
     NgxSpinnerModule,
     NgxPaginationModule,
+    MatDialogModule,
     ChartsModule,
     LazyLoadImageModule.forRoot({
       preset: scrollPreset // <-- tell LazyLoadImage that you want to use scrollPreset
@@ -102,6 +107,7 @@ const appRoutes: Routes = [
     useClass: TokenInterceptorService,
     multi: true
   }],
+  entryComponents: [NewPasswordComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })

@@ -5,6 +5,9 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router'
 import { AuthService } from '../../services/auth.service';
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { NewPasswordComponent } from '../new-password/new-password.component';
+import { unescapeIdentifier } from '@angular/compiler';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +29,8 @@ export class LoginComponent implements OnInit {
     private validateService: ValidateService, 
     private fb: FormBuilder, 
     private router: Router, 
-    private matSnackBar: MatSnackBar
+    private matSnackBar: MatSnackBar,
+    private dialog: MatDialog
     ) { }
 
   submitted = false;
@@ -46,6 +50,39 @@ export class LoginComponent implements OnInit {
     this.matSnackBar.open(message, action, {
       duration: 3000,
     })
+  }
+
+  openDialog(){
+    const dialogConfig = new MatDialogConfig()
+
+    // dialogConfig.disableClose = true
+    dialogConfig.autoFocus = true
+
+    dialogConfig.data = {
+      email: 'abc@xyz.com'
+    }
+
+    //this.dialog.open(NewPasswordComponent, dialogConfig)
+
+    const dialogRef = this.dialog.open(NewPasswordComponent, dialogConfig)
+
+    dialogRef.afterClosed()
+    .subscribe(
+      email => {
+        console.log(this.validateService.validateEmail(email))
+        //console.log(validEmail)
+        if(email === undefined){
+          //console.log(validEmail)
+          return
+        }
+        else{
+          //console.log(validEmail)
+          console.log("Email: ", email)
+        }
+        
+      }
+    )
+
   }
 
   onSubmit(){
