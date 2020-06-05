@@ -4,6 +4,7 @@ import { Color, Label } from 'ng2-charts';
 import { AuthService } from 'src/app/services/auth.service';
 import { PlacesService } from 'src/app/services/places.service';
 import { CommentsService } from 'src/app/services/comments.service';
+import { NavbarServiceService } from 'src/app/services/navbar-service.service';
 
 
 @Component({
@@ -13,7 +14,14 @@ import { CommentsService } from 'src/app/services/comments.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private authService: AuthService, private placeService: PlacesService, private comment: CommentsService) { }
+  constructor(
+    private authService: AuthService, 
+    private placeService: PlacesService, 
+    private comment: CommentsService,
+    public navService: NavbarServiceService
+    ) {
+      this.navService.hide()
+     }
 
   totalUsers
   totalPlaces

@@ -8,6 +8,8 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { NewPasswordComponent } from '../new-password/new-password.component';
 import { unescapeIdentifier } from '@angular/compiler';
+import { NavbarServiceService } from 'src/app/services/navbar-service.service';
+import { FooterService } from 'src/app/services/footer.service';
 
 @Component({
   selector: 'app-login',
@@ -30,8 +32,13 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder, 
     private router: Router, 
     private matSnackBar: MatSnackBar,
-    private dialog: MatDialog
-    ) { }
+    private dialog: MatDialog,
+    public nav: NavbarServiceService,
+    public footer: FooterService
+    ) { 
+      this.nav.show()
+      this.footer.show()
+    }
 
   submitted = false;
 
@@ -52,38 +59,42 @@ export class LoginComponent implements OnInit {
     })
   }
 
-  openDialog(){
-    const dialogConfig = new MatDialogConfig()
+  // openDialog(){
+  //   const dialogConfig = new MatDialogConfig()
 
-    // dialogConfig.disableClose = true
-    dialogConfig.autoFocus = true
+  //   // dialogConfig.disableClose = true
+  //   dialogConfig.autoFocus = true
 
-    dialogConfig.data = {
-      email: 'abc@xyz.com'
-    }
+  //   dialogConfig.data = {
+  //     email: 'abc@xyz.com'
+  //   }
 
-    //this.dialog.open(NewPasswordComponent, dialogConfig)
+  //   //this.dialog.open(NewPasswordComponent, dialogConfig)
 
-    const dialogRef = this.dialog.open(NewPasswordComponent, dialogConfig)
+  //   const dialogRef = this.dialog.open(NewPasswordComponent, dialogConfig)
 
-    dialogRef.afterClosed()
-    .subscribe(
-      email => {
-        console.log(this.validateService.validateEmail(email))
-        //console.log(validEmail)
-        if(email === undefined){
-          //console.log(validEmail)
-          return
-        }
-        else{
-          //console.log(validEmail)
-          console.log("Email: ", email)
-        }
+  //   dialogRef.afterClosed()
+  //   .subscribe(
+  //     email => {
+  //       //console.log(this.validateService.validateEmail(email))
+
+  //       const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  //       console.log(re.test(String(email).toLowerCase()));
+
+  //       //console.log(validEmail)
+  //       if(email === undefined){
+  //         //console.log(validEmail)
+  //         return
+  //       }
+  //       else{
+  //         //console.log(validEmail)
+  //         console.log("Email: ", email)
+  //       }
         
-      }
-    )
+  //     }
+  //   )
 
-  }
+  // }
 
   onSubmit(){
 

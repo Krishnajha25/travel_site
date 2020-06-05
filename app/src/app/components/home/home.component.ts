@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PlacesService } from 'src/app/services/places.service';
 import { SearchPipe } from 'src/app/pipes/search.pipe';
 import { NgxSpinnerService } from "ngx-spinner";
+import { FooterService } from 'src/app/services/footer.service';
+import { NavbarServiceService } from 'src/app/services/navbar-service.service';
 
 @Component({
   selector: 'app-home',
@@ -26,11 +28,15 @@ export class HomeComponent implements OnInit {
   constructor(
     private fb: FormBuilder, 
     private places: PlacesService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    public nav: NavbarServiceService,
+    public footer: FooterService
     ) {
       this.searchForm = fb.group({
         search: [{value: '', disabled: false}, Validators.required]
-    })
+      })
+      this.nav.show()
+      this.footer.show()
     }
 
   page = {

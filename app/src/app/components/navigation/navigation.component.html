@@ -1,0 +1,53 @@
+<nav>
+    <div class="container-fluid">
+        <div class="hamburger" (click)="toggle()">
+            <span class="material-icons">menu</span>
+        </div>
+        <div class="drawer" *ngIf="visible != visible">
+            <span (click)="toggle()" class="material-icons">menu</span>
+        </div>
+        <div class="navigation-bar">
+            <div class="logo" (click)="toggle()">
+                Tourist
+            </div>
+            <div class="navigation-links-container">
+                <div class="left-links">
+                    <ul class="navigation-links">
+                        <li class="link">Home</li>
+                        <li class="link">Home</li>
+                        <li class="link">Home</li>
+                        <li class="link">Home</li>
+                        <li class="link">Home</li>
+                    </ul>
+                </div>
+                <div class="right-links">
+                    <!-- <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu"> -->
+                        <span [matMenuTriggerFor]="menu" class=" menu-button material-icons">more_vert</span>
+                    <!-- </button> -->
+                    <mat-menu #menu="matMenu">
+                        <button mat-menu-item>
+                            <!-- <span class="material-icons">face</span> -->
+                            <span>Profile</span>
+                        </button>
+                        <button mat-menu-item>
+                            <!-- <span class="material-icons">exit_to_app</span> -->
+                            <span>Logout</span>
+                        </button>
+                    </mat-menu>
+                    <!-- <select name="options" id="options">
+                        <option value="profile">Profile</option>
+                        <option value="logout">Logout</option>
+                    </select> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<script>
+    $(document).ready(function(){
+        $('.hamburger').click(function(){
+            alert("Button has been clicked");
+        })
+    })
+</script>

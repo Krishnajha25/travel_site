@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { AuthService } from '../../services/auth.service'
 import { LocationStrategy } from '@angular/common';
+import { NavbarServiceService } from 'src/app/services/navbar-service.service';
 
 
 @Component({
@@ -12,7 +13,11 @@ import { LocationStrategy } from '@angular/common';
 
 export class NavbarComponent implements OnInit {
 
-  constructor(public authService: AuthService, private url: LocationStrategy) { }
+  constructor(
+    public navService: NavbarServiceService,
+    public authService: AuthService, 
+    private url: LocationStrategy
+    ) { }
 
   isAdmin = false
 

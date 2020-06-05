@@ -34,6 +34,7 @@ import { PlacesComponent } from './components/places/places.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import{ MatFormFieldModule } from '@angular/material/form-field'
 import {MatInputModule} from '@angular/material/input';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 import { MatSnackBarModule } from "@angular/material/snack-bar";
@@ -46,6 +47,10 @@ import { SearchPipe } from './pipes/search.pipe';
 import { SearchFilterPipe } from './pipes/search-filter.pipe';
 import { NewPasswordComponent } from './components/new-password/new-password.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ResetLinkExpireComponent } from './components/reset-link-expire/reset-link-expire.component';
+import { PasswordChangedComponent } from './components/password-changed/password-changed.component';
+import { NavigationComponent } from './components/navigation/navigation.component';
 
 
 const appRoutes: Routes = [
@@ -55,7 +60,12 @@ const appRoutes: Routes = [
   { path: 'profile', component: ProfileComponent, canActivate: [AuthenticateGuard] },
   { path: 'contact', component: ContactComponent },
   { path: 'places', component: PlaceLandingComponent },
-  { path: 'places/:name', component: PlacesComponent}
+  { path: 'places/:name', component: PlacesComponent},
+  { path: 'forget-password', component: NewPasswordComponent},
+  { path: 'reset/:email/:token', component: ResetPasswordComponent},
+  { path: 'link-expired', component: ResetLinkExpireComponent},
+  { path: 'password-changed-success', component: PasswordChangedComponent},
+  { path: 'navigation', component: NavigationComponent},
 ]
 
 @NgModule({
@@ -77,6 +87,10 @@ const appRoutes: Routes = [
     SearchPipe,
     SearchFilterPipe,
     NewPasswordComponent,
+    ResetPasswordComponent,
+    ResetLinkExpireComponent,
+    PasswordChangedComponent,
+    NavigationComponent,
   ],
   imports: [
     AdminModule,
@@ -85,6 +99,7 @@ const appRoutes: Routes = [
     MatAutocompleteModule,
     MatFormFieldModule,
     MatInputModule,
+    MatMenuModule,
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(appRoutes),
@@ -107,7 +122,6 @@ const appRoutes: Routes = [
     useClass: TokenInterceptorService,
     multi: true
   }],
-  entryComponents: [NewPasswordComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })

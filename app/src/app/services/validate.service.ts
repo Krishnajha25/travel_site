@@ -50,8 +50,15 @@ export class ValidateService {
   }
 
   validateEmail(email){
-    const re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    return re.test(String(email).toLowerCase());
+    var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+
+        if (reg.test(email.value) == false) 
+        {
+            //alert('Invalid Email Address');
+            return false;
+        }
+
+        return true;
   }
 
   

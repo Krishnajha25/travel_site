@@ -79,7 +79,7 @@ app.post('/api/forgot', function(req, res){
     if(!result){
       return res.status(200).json({
         success: 0,
-        message: "Email does not exist"
+        message: "Sorry! This email is not registered with us."
       })
     }
 
@@ -94,7 +94,7 @@ app.post('/api/forgot', function(req, res){
       if(result < 1){
         return res.status(200).json({
           success: 0,
-          message: "Email does not exist"
+          message: "Sorry! This email is not registered with us."
         })
       }
 
@@ -109,14 +109,14 @@ app.post('/api/forgot', function(req, res){
         if(!result){
           return res.status(200).json({
             success: 0,
-            message: "Email could not be sent",
+            message: "Sorry! This email is not registered with us.",
             Error: err
           })
         }
         return res.status(200).json({
           success: 1,
-          message: "Email sent",
-          Result: result
+          message: "Password reset link has been sent to your email id",
+          //Result: result
         })
       })
 
@@ -142,13 +142,13 @@ app.get('/api/reset/:email/:token', (req, res) => {
     if(result < 1){
       return res.json({
         success: 0,
-        messgae: "Token expired"
+        messgae: "Sorry the link is expired. Please retry!"
       })
     }
     
     return res.json({
       success: 1,
-      result: result
+      message: 'Please enter your new password below'
     })
   })
 
@@ -164,7 +164,7 @@ app.post('/api/reset/:email/:token', (req, res) => {
   token = req.params.token
 
   password = req.body.password
-  confirmPassword = req.body.confirmPassword
+  confirmPassword = req.body.confirm_password
 
   const salt = genSaltSync(10);
   hashPassword = hashSync(password, salt);
