@@ -25,9 +25,6 @@ export class PlaceLandingComponent implements OnInit {
   
   noImage = false
 
-  
-
-
   ngOnInit(): void {
     this.spinner.show()
     
@@ -35,6 +32,7 @@ export class PlaceLandingComponent implements OnInit {
     .subscribe(
       res => {
         this.placesExcel = res
+        // console.log(this.placesExcel)
         this.spinner.hide()
       },
       err => console.log(err)

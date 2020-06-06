@@ -14,15 +14,32 @@
                 <p class="place-description">{{ placeDetails[2] }}</p>
             </div>
             <mat-divider></mat-divider>
-            <div class="place-to-visit-container">
-                <h3 style="margin: 0px; color: #656464;">Places of Attraction</h3>
-                <mat-list role="list">
-                    <mat-list-item role="listitem" class="place-to-visit-list" *ngFor="let place of placesToVisit">
-                    <span class="material-icons">keyboard_arrow_right</span>  
-                    {{ place }}
-                    </mat-list-item>
-                </mat-list>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="place-to-visit-container">
+                        <h3 style="margin: 0px; color: #656464;">Places of Attraction</h3>
+                        <mat-list role="list">
+                            <mat-list-item role="listitem" class="place-to-visit-list" *ngFor="let place of placesToVisit">
+                            <span class="material-icons">keyboard_arrow_right</span>  
+                            {{ place }}
+                            </mat-list-item>
+                        </mat-list>
+                    </div>
+                </div>
+                <div class="col-md-6" *ngIf="avoidAvailable">
+                    <div class="things-to-avoid">
+                        <h3 style="margin: 0px; color: #656464;">Things to avoid</h3>
+                        <mat-list role="list">
+                            <mat-list-item role="listitem" class="things-to-avoid-list" *ngFor="let thing of avoid">
+                            <span class="material-icons">keyboard_arrow_right</span>  
+                            {{ thing }}
+                            </mat-list-item>
+                        </mat-list>
+                    </div>    
+                </div>
             </div>
+            
+            
         </div>
     </div>
 </div>
