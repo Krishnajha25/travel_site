@@ -22,7 +22,7 @@ export class CommentAdminComponent implements OnInit {
     this.comment.getComments()
     .subscribe(
       res => this.comments = res["message"],
-      err => console.log(err)
+      error => console.log(error)
     )
   }
 
